@@ -1,4 +1,4 @@
-
+import math
 
 class unigram:
     def __init__(self, text):
@@ -7,13 +7,19 @@ class unigram:
         self.total = len(text) - 2
         for word in self.text:
             self.freq[word] = self.freq.get(word, 0) + 1
+        self.numUnique = len(self.freq) - 2
 
-
-    def printFreq(self, num):
-        x = 0
-        for word in self.freq:
-            if x > num:
-                break
-            print(word)
-            print(self.freq[word])
-            x = x+1
+    def wordProb(self, word):
+        num = self.freq[word]
+        den = self.total
+        return num/den
+    
+    def perp(self, test):
+        logProb = 0
+        for word in test:
+            if word in self.freq:
+                logProb -= math.log2(self.wordProb(word))
+            else:
+                logProb -= math.log2(self.wordProb("UNK"))
+        logProb = logProb/len(test)
+        return math.pow(2, logProb)
