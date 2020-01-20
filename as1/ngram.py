@@ -1,5 +1,6 @@
 from collections import Counter
 from models import unigram
+from models import bigram
 
 UNK = "UNK"
 
@@ -19,4 +20,9 @@ train.insert(0, "START")
 train.append("STOP")
 
 modelU = unigram(train)
+print(modelU.perp(train))
+print(modelU.perp(val))
 print(modelU.perp(test))
+
+modelB = bigram(train)
+print(modelB.wordProb('IBM', 'spokesman'))
