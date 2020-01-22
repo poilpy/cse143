@@ -3,6 +3,7 @@ import math
 start = "START"
 stop = "STOP"
 
+#loop through the text and get the word frequencies
 class unigram:
     def __init__(self, text):
         self.freq = dict()
@@ -11,7 +12,7 @@ class unigram:
         for word in self.text:
             self.freq[word] = self.freq.get(word, 0) + 1
         self.numUnique = len(self.freq) - 2
-
+#calculate word probability from frequency
     def wordProb(self, word):
         num = self.freq[word]
         den = self.total
@@ -35,7 +36,7 @@ class unigram:
     #             sentProb = 1
     #     logProb = logProb/len(test)
     #     return math.pow(2, logProb)
-
+#calculate perplexity using formula
     def perp(self, test):
         logProb = 0
         for word in test:
@@ -45,7 +46,7 @@ class unigram:
                 logProb -= math.log2(self.wordProb("UNK"))
         logProb = logProb/len(test)
         return math.pow(2, logProb)
-
+#loop through the text and get the word frequencies for bigram
 class bigram:
     def __init__(self, text):
         self.freq = dict()
@@ -60,7 +61,7 @@ class bigram:
                 self.grams.add((self.prevWord, word))
             self.prevWord = word
         self.numUnique = len(self.freq) - 2
-
+#calculate word probability from frequency
     def wordProb(self, prevWord, word):
         # x = 10
         # for a in self.freq:
@@ -71,7 +72,7 @@ class bigram:
         num = self.freq.get((prevWord, word), 0)
         den = self.uni.freq[prevWord]
         return num/den
-    
+  #calculate perplexity using formula 
     def perp(self, test):
         logProb = 0
         self.prevWord = None
