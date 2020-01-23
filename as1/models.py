@@ -18,24 +18,6 @@ class unigram:
         den = self.total
         return num/den
 
-    # def perp(self, test):
-    #     logProb = 0
-    #     sentProb = 1
-    #     for word in test:
-    #         if word != stop:
-    #             if word in self.freq:
-    #                 if sentProb == 0:
-    #                     print(word)
-    #                     print(self.wordProb("induced"))
-    #                 sentProb *= self.wordProb(word)
-    #             else:
-    #                 sentProb *= self.wordProb("UNK")
-    #         else:
-    #             print(sentProb)
-    #             logProb -= math.log2(sentProb)
-    #             sentProb = 1
-    #     logProb = logProb/len(test)
-    #     return math.pow(2, logProb)
 #calculate perplexity using formula
     def perp(self, test):
         logProb = 0
@@ -45,13 +27,9 @@ class unigram:
             else:
                 logProb -= np.log2(self.wordProb("UNK"))
         logProb = logProb/len(test)
-<<<<<<< HEAD
         return np.power(2, logProb)
-
-=======
-        return math.pow(2, logProb)
+        
 #loop through the text and get the word frequencies for bigram
->>>>>>> 672beec9bdb3c89615f17b03b4ffcd5354789f44
 class bigram:
     def __init__(self, text):
         self.freq = dict()
@@ -80,7 +58,6 @@ class bigram:
                 logProb -= np.log2(self.wordProb(self.prevWord, word) if self.wordProb(self.prevWord, word) != 0 else 1)
             self.prevWord = word
         logProb = logProb/len(test)
-<<<<<<< HEAD
         return np.power(2, logProb)
 
 class trigram:
@@ -124,6 +101,3 @@ class trigram:
             self.prevWord = word
         logProb = logProb/len(test)
         return np.power(2, logProb)
-=======
-        return math.pow(2, logProb)
->>>>>>> 672beec9bdb3c89615f17b03b4ffcd5354789f44
