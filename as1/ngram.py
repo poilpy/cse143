@@ -70,7 +70,7 @@ print("Test = ", smoo.perp(test))
 
 
 print("Trigram model preplexity (Half):")
-modelT = trigram(train[:(len(train)/2 +1)])
+modelT = trigram(train[:int(len(train)/2)])
 print("Train = ", modelT.perp(train))
 print("val = ", modelT.perp(val))
 print("Test = ", modelT.perp(test), "\n")
