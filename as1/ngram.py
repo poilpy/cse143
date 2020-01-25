@@ -21,11 +21,11 @@ test = openF("1b_benchmark.test.tokens")
 trainC = Counter(train)
 train = [n if trainC[n] >= 3 else UNK for n in train]
 
+
 def printModel(model):
     print("Train = ", model.perp(train))
     print("Val = ", model.perp(val))
     print("Test = ", model.perp(test), "\n")
-
 
 #unigram
 print("Unigram model preplexity:")
@@ -58,6 +58,6 @@ smoo = trigram(train, .1, .8, .1)
 print("Perplexity for l1=.1, l2=.8, l3=.1")
 printModel(smoo)
 
-print("Trigram model preplexity (Half):")
-modelT = trigram(train[:int(len(train)/2)])
-printModel(modelT)
+print("Unigram model preplexity (Half):")
+modelU = unigram(train[:int(len(train)/2)])
+printModel(modelU)
