@@ -12,3 +12,8 @@ To download the raw 1 Billion Word Benchmark and generate the data, run:
 ```
 ./subsample_1b_benchmark.sh
 ```
+
+How to Run Code:
+1. Download Data Files `1b_benchmark.test.tokens`, `1b_benchmark.dev.tokens` , `1b_benchmark.train.tokens`
+2. Install Python3
+3. run Python3 ngram.py
