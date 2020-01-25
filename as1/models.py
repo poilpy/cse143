@@ -65,7 +65,8 @@ class bigram:
             self.prevWord = word
         logProb = logProb/len(test)
         return np.power(2, logProb)
-
+    
+#loop through the text and get the word frequencies
 class trigram:
     def __init__(self, text, l1=1, l2=1, l3=1):
         self.freq = dict()
@@ -82,14 +83,15 @@ class trigram:
                         (self.prevPrevWord, self.prevWord, word), 0) + 1
                 self.prevPrevWord = self.prevWord
             self.prevWord = word
-
+            
+#calculate word probability from frequency
     def wordProb(self, prevPrevWord, prevWord, word):
         num = self.freq.get((prevPrevWord, prevWord, word), 0)
         den = self.bi.freq.get((prevPrevWord, prevWord), 0)
         if den == 0:
             return 0
         return np.float(num/den)
-    
+    #calculate perplexity using formula 
     def perp(self, test):
         logProb = 0
         self.prevWord = None

@@ -22,6 +22,7 @@ trainC = Counter(train)
 train = [n if trainC[n] >= 3 else UNK for n in train]
 
 
+#Print Models
 def printModel(model):
     print("Train = ", model.perp(train))
     print("Val = ", model.perp(val))
@@ -42,6 +43,7 @@ print("Trigram model preplexity:")
 modelT = trigram(train)
 printModel(modelT)
 
+#smoothing for trigram
 smoo = trigram(train, .1, .3, .6)
 print("Perplexity for l1=.1, l2=.3, l3=.6")
 printModel(smoo)
