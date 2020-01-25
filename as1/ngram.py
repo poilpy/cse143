@@ -60,6 +60,13 @@ smoo = trigram(train, .1, .8, .1)
 print("Perplexity for l1=.1, l2=.8, l3=.1")
 printModel(smoo)
 
-print("Unigram model preplexity (Half):")
-modelU = unigram(train[:int(len(train)/2)])
-printModel(modelU)
+smoo = trigram(train[:int(len(train)/2)], .1, .3, .6)
+print("Perplexity for l1=.1, l2=.3, l3=.6 (Half Train set)")
+printModel(smoo)
+
+trainC = Counter(train)
+train = [n if trainC[n] >= 5 else UNK for n in train]
+
+smoo = trigram(train, .1, .3, .6)
+print("Perplexity for l1=.1, l2=.3, l3=.6 (UNK < 5)")
+printModel(smoo)
